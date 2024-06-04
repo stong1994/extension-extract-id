@@ -6,23 +6,22 @@ chrome.action.onClicked.addListener(async (tab) => {
   const mongoRegex = /[0-9a-fA-F]{24}/g;
   const regexes = [uuidRegex, mongoRegex];
 
-  let id;
+  let ids = [];
   for (const regex of regexes) {
-    // Extract the ID from the URL
-    id = (tab.url.match(regex) || [])[0];
-    if (id) {
-      console.log("ID:", id);
-      break; // Stop the loop once an ID is found
+    // Extract the IDs from the URL
+    const matches = tab.url.match(regex);
+    if (matches) {
+      ids = ids.concat(matches);
     }
   }
-  if (id) {
+  if (ids.length > 0) {
+    const idString = ids.join(",");
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
       function: copyID,
-      args: [id],
+      args: [idString],
     });
-    notify("ID has been copied to clipboard", id);
-    // chrome.storage.local.set({ id: id }, function () {});
+    notify("IDs have been copied to clipboard", idString);
   } else {
     notify("No ID found", "No ID found in the URL.");
   }

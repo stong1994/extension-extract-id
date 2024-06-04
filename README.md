@@ -9,6 +9,7 @@ ID Extractor is a web browser plugin designed to extract IDs from web URLs.
   - UUID: e.g., "20a7fa5d-55c5-4364-ae81-46d4472865ab"
   - UUID Hex: e.g., "20a7fa5d55c54364ae8146d4472865ab"
   - MongoDB ID: e.g., "6642ce35337ea0f207e4d7a9"
+- If there are multiple id found, we will use ',' to contact them.
 
 ## Notifications
 
