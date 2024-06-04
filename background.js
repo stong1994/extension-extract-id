@@ -21,7 +21,7 @@ chrome.action.onClicked.addListener(async (tab) => {
       function: copyID,
       args: [idString],
     });
-    notify("IDs have been copied to clipboard", idString);
+    notify("ID have been copied to clipboard", idString);
   } else {
     notify("No ID found", "No ID found in the URL.");
   }
